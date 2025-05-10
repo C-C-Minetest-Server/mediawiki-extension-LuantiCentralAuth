@@ -54,7 +54,7 @@ class LuantiCentralAuthPrimaryAuthenticationProvider extends AbstractPasswordPri
 
 		$globalUser = $this->CAConnection->getGlobalUser($username);
 		if ($globalUser === null) {
-			$this->failResponse($req);
+			return $this->failResponse($req);
 		}
 
 		$password_given = $req->password;

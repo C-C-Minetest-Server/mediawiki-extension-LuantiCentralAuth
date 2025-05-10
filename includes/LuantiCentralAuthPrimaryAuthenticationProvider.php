@@ -46,7 +46,7 @@ class LuantiCentralAuthPrimaryAuthenticationProvider extends AbstractPasswordPri
 		}
 
 		$username = $req->username;
-		$username = str_replace('_', ' ', $username);
+		$username = str_replace(' ', '_', $username);
 		$username = $this->userNameUtils->getCanonical($username, UserRigorOptions::RIGOR_USABLE);
 		if ($username === false) {
 			return $this->failResponse($req);

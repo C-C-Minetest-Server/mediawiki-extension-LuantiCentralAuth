@@ -1,0 +1,15 @@
+{
+	"name": "LuantiCentralAuth",
+	"version": "1.0.0",
+	"author": [
+	    "1F616EMO"
+	],
+	"url": "https://git.bananach.space/AuthMinetest.git",
+	"description": "Allow authenticating users against a CentralAuth-enabled Luanti server system.",
+	"license-name": "GPL-3.0+",
+	"type": "auth",
+	"AutoloadClasses": {
+		"MediaWiki\\Extension\\LuantiCentralAuth": "includes/"
+	},
+	"manifest_version": 1
+}

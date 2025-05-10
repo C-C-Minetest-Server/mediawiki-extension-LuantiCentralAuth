@@ -1,0 +1,5 @@
+{
+    "require": {
+        "artisansdk/srp": "dev-master"
+    }
+}

@@ -98,7 +98,7 @@ class LuantiCentralAuthGlobalUser
         $srp_ng_G = \gmp_init("2", 16);
 
         // calculate_x
-        $x = \gmp_init(hash('sha256', $this->name . ':' . $password), 16);
+        $x = \gmp_init(hash('sha256', strtolower($this->name) . ':' . $password), 16);
         $gen_verifier = \gmp_powm($srp_ng_G, $x, $srp_ng_N);
 
         // $srp_client = new SRP\Client(new SRP\Config(
@@ -110,6 +110,6 @@ class LuantiCentralAuthGlobalUser
 
         // $gen_verifier = hex2bin($srp_client->enroll($this->name, $password, bin2hex($salt)));
 
-        return $verifier === $gen_verifier;
+        return $verifier === \gmp_export($gen_verifier);
     }
 }

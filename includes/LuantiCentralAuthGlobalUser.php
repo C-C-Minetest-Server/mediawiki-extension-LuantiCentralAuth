@@ -90,7 +90,7 @@ class LuantiCentralAuthGlobalUser
             'sha256'
         ));
 
-        $gen_verifier = $srp_client->enroll($this->name, $password, $salt);
+        $gen_verifier = hex2bin($srp_client->enroll($this->name, $password, $salt));
 
         return $verifier === $gen_verifier;
     }

@@ -9,7 +9,8 @@
 	"license-name": "GPL-3.0+",
 	"type": "auth",
 	"AutoloadNamespaces": {
-		"MediaWiki\\Extension\\LuantiCentralAuth": "includes/"
+		"MediaWiki\\Extension\\LuantiCentralAuth\\": "includes/"
 	},
+	"load_composer_autoloader": true,
 	"manifest_version": 2
 }

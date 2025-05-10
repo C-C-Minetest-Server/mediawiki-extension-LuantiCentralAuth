@@ -25,58 +25,60 @@ use Mediawiki\Auth\AbstractPasswordPrimaryAuthenticationProvider;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
+use MediaWiki\Auth\UserRigorOptions;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\IConnectionProvider;
 
-class LuantiCentralAuthPrimaryAuthenticationProvider
-    extends AbstractPasswordPrimaryAuthenticationProvider
+class LuantiCentralAuthPrimaryAuthenticationProvider extends AbstractPasswordPrimaryAuthenticationProvider
 {
-    private LuantiCentralAuthConnection $CAConnection;
+	private LuantiCentralAuthConnection $CAConnection;
 
-    public function __construct( $params = [] ) {
-        parent::__construct( $params );
-        $this->CAConnection = new LuantiCentralAuthConnection( $params['connectionParam'] );
-    }
-
-    public function beginPrimaryAuthentication(array $reqs)
+	public function __construct($params = [])
 	{
-        $req = AuthenticationRequest::getRequestByClass( $reqs, PasswordAuthenticationRequest::class );
-        if (!$req || $req->username === null || $req->password === null) {
+		parent::__construct($params);
+		$this->CAConnection = new LuantiCentralAuthConnection($params['connectionParam']);
+	}
+
+	public function beginPrimaryAuthentication(array $reqs)
+	{
+		$req = AuthenticationRequest::getRequestByClass($reqs, PasswordAuthenticationRequest::class);
+		if (!$req || $req->username === null || $req->password === null) {
 			return AuthenticationResponse::newAbstain();
 		}
 
-		$username = $this->userNameUtils->getCanonical(
-            $req->username, UserRigorOptions::RIGOR_USABLE );
-        if ( $username === false ) {
-            return $this->failResponse( $req );
-        }
-
-        $globalUser = $this->CAConnection->getGlobalUser( $username );
-        if ( $globalUser === null ) {
-            $this->failResponse( $req );
+		$username = $req->username;
+		$username = str_replace('_', ' ', $username);
+		$username = $this->userNameUtils->getCanonical($username, UserRigorOptions::RIGOR_USABLE);
+		if ($username === false) {
+			return $this->failResponse($req);
 		}
 
-        $password_given = $req->password;
-        
-        if ( $this->checkPassword( $globalUser, $password_given ) ) {
-            return AuthenticationResponse::newPass( $username );
-        }
+		$globalUser = $this->CAConnection->getGlobalUser($username);
+		if ($globalUser === null) {
+			$this->failResponse($req);
+		}
 
-        return $this->failResponse( $req );
+		$password_given = $req->password;
+
+		if ($this->checkPassword($globalUser, $password_given)) {
+			return AuthenticationResponse::newPass($username);
+		}
+
+		return $this->failResponse($req);
 	}
 
-    public function testUserCanAuthenticate($username)
-    {
-        return $this->testUserExists($username);
-    }
+	public function testUserCanAuthenticate($username)
+	{
+		return $this->testUserExists($username);
+	}
 
-    public function testUserExists($username, $flags = User::READ_NORMAL)
-    {
-        $globalUser = $this->CAConnection->getGlobalUser($username);
-        return $globalUser !== null;
-    }
+	public function testUserExists($username, $flags = User::READ_NORMAL)
+	{
+		$globalUser = $this->CAConnection->getGlobalUser($username);
+		return $globalUser !== null;
+	}
 
-    public function providerAllowsPropertyChange($property)
+	public function providerAllowsPropertyChange($property)
 	{
 		return false;
 	}
@@ -111,4 +113,3 @@ class LuantiCentralAuthPrimaryAuthenticationProvider
 		}
 	}
 }
-    

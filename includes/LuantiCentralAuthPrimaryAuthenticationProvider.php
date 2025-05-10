@@ -59,7 +59,7 @@ class LuantiCentralAuthPrimaryAuthenticationProvider extends AbstractPasswordPri
 		$password_given = $req->password;
 
 		if ($globalUser->checkPassword($password_given)) {
-			$username = $this->userNameUtils->getCanonical($username, UserRigorOptions::RIGOR_USABLE);
+			$username = $this->userNameUtils->getCanonical($globalUser->getName(), UserRigorOptions::RIGOR_USABLE);
 			return AuthenticationResponse::newPass($username);
 		}
 

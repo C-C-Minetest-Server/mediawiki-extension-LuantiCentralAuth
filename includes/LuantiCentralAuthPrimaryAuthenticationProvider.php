@@ -65,7 +65,7 @@ class LuantiCentralAuthPrimaryAuthenticationProvider
         return $this->failResponse( $req );
 	}
 
-    public function testUserCanAuthenticate(string $username): bool
+    public function testUserCanAuthenticate($username)
     {
         return $this->testUserExists($username);
     }

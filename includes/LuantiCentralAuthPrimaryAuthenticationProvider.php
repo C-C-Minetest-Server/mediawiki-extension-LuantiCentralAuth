@@ -99,7 +99,7 @@ class LuantiCentralAuthPrimaryAuthenticationProvider extends AbstractPasswordPri
 
 	public function beginPrimaryAccountCreation($user, $creator, array $reqs)
 	{
-		throw new \BadMethodCallException('This should not get called');
+		return AuthenticationResponse::newAbstain();
 	}
 
 	public function getAuthenticationRequests($action, array $options)

@@ -94,7 +94,7 @@ class LuantiCentralAuthPrimaryAuthenticationProvider extends AbstractPasswordPri
 
 	public function accountCreationType()
 	{
-		return self::TYPE_CREATE;
+		return self::TYPE_LINK;
 	}
 
 	public function beginPrimaryAccountCreation($user, $creator, array $reqs)

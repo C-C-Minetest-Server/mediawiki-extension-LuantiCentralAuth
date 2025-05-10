@@ -4,9 +4,9 @@
 	"author": [
 	    "1F616EMO"
 	],
-	"url": "https://git.bananach.space/AuthMinetest.git",
+	"url": "https://github.com/C-C-Minetest-Server/mediawiki-extension-LuantiCentralAuth",
 	"description": "Allow authenticating users against a CentralAuth-enabled Luanti server system.",
-	"license-name": "GPL-3.0+",
+	"license-name": "GPL-3.0-or-later",
 	"type": "auth",
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\LuantiCentralAuth\\": "includes/"

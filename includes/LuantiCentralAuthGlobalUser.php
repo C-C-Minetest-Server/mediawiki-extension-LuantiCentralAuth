@@ -20,7 +20,6 @@
  */
 
 namespace MediaWiki\Extension\LuantiCentralAuth;
-use ArtisanSdk\SRP;
 
 class LuantiCentralAuthGlobalUser
 {

@@ -33,7 +33,7 @@ class LuantiCentralAuthPrimaryAuthenticationProvider
 {
     private LuantiCentralAuthConnection $CAConnection;
 
-    public function __construct( IConnectionProvider $dbProvider, $params = [] ) {
+    public function __construct( $params = [] ) {
         parent::__construct( $params );
         $this->CAConnection = new LuantiCentralAuthConnection( $params['connectionParam'] );
     }

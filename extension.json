@@ -8,7 +8,7 @@
 	"description": "Allow authenticating users against a CentralAuth-enabled Luanti server system.",
 	"license-name": "GPL-3.0+",
 	"type": "auth",
-	"AutoloadClasses": {
+	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\LuantiCentralAuth": "includes/"
 	},
 	"manifest_version": 1

@@ -70,11 +70,12 @@ class LuantiCentralAuthGlobalUser
     // srp_create_salted_verification_key
     public function checkPassword(string $password): bool
     {
-        if (base64_encode(base64_decode($this->password, true)) === $this->password) {
-            $slt = $this->name . $password;
-            $digest = sha1($slt, true);
-            $pwd = base64_encode($digest);
-            return $pwd === $this->password;
+        // We have no way to know if base64 is valid, but SRP format won't success anyways
+        $slt = $this->name . $password;
+        $digest = sha1($slt, true);
+        $pwd = rtrim('=', base64_encode($digest));
+        if ($pwd === $this->password) {
+            return true;
         }
 
         $salt = ''; // bytes_s

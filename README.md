@@ -15,9 +15,8 @@ $wgAuthManagerAutoConfig['primaryauth'][\MediaWiki\Extension\LuantiCentralAuth\L
         'connectionParam' => 'host=xxxxx user=xxxxx password=xxxxx dbname=xxxxx',
         'authoritative' => true,
     ]],
-    'sort' => 100,
+    'sort' => 50,
 ];
-unset($wgAuthManagerAutoConfig['primaryauth'][MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider::class]);
 ```
 
 ## Caution

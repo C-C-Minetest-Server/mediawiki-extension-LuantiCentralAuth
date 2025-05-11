@@ -38,10 +38,22 @@ class LuantiCentralAuthPrimaryAuthenticationProvider extends AbstractPasswordPri
 		$this->CAConnection = new LuantiCentralAuthConnection($params['connectionParam']);
 	}
 
+	private function isUsernameValid(string $username): bool
+	{
+		return
+			preg_match("/[^a-zA-Z0-9-_]/i", $username) === 0
+			|| strlen($username) <= 20;
+	}
+
 	public function beginPrimaryAuthentication(array $reqs)
 	{
 		$req = AuthenticationRequest::getRequestByClass($reqs, PasswordAuthenticationRequest::class);
-		if (!$req || $req->username === null || $req->password === null) {
+		if (
+			!$req
+			|| $req->username === null
+			|| $req->password === null
+			|| !$this->isUsernameValid($req->username)
+		) {
 			return AuthenticationResponse::newAbstain();
 		}
 

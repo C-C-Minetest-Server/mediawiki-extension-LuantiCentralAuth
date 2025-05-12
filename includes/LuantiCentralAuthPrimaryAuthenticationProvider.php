@@ -33,10 +33,10 @@ class LuantiCentralAuthPrimaryAuthenticationProvider extends AbstractPasswordPri
 {
 	private LuantiCentralAuthConnection $CAConnection;
 
-	public function __construct($params = [])
+	public function __construct(LuantiCentralAuthConnection $CAConnection, array $params = [])
 	{
 		parent::__construct($params);
-		$this->CAConnection = new LuantiCentralAuthConnection($params['connectionParam']);
+		$this->CAConnection = $CAConnection;
 	}
 
 	private function isUsernameValid(string $username): bool

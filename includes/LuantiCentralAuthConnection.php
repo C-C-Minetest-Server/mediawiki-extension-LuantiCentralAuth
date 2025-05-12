@@ -21,12 +21,15 @@
 
 namespace MediaWiki\Extension\LuantiCentralAuth;
 
+use MediaWiki\Config\Config;
+
 class LuantiCentralAuthConnection
 {
     private \PgSql\Connection $postgresConnection;
 
-    public function __construct(string $connectionParam)
+    public function __construct(Config $config)
     {
+        $connectionParam = $config->get( 'LuantiCentralAuthDBConnection' );
         if ($postgresConnection = \pg_connect($connectionParam)) {
             $this->postgresConnection = $postgresConnection;
         } else {

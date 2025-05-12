@@ -11,5 +11,14 @@
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\LuantiCentralAuth\\": "includes/"
 	},
+	"config": {
+		"LuantiCentralAuthDBConnection": {
+			"description": "PostgreSQL connection paramater passed into pg_connect",
+			"value": null
+		}
+	},
+	"ServiceWiringFiles": [
+		"includes/ServiceWiring.php"
+	],
 	"manifest_version": 2
 }

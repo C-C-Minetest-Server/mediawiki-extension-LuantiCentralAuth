@@ -8,13 +8,17 @@ Add the following into your `LocalSettings.php`:
 
 ```php
 wfLoadExtension( 'LuantiCentralAuth' );
+
+// Replace the 'xxxxx' with what your CentralAuth database uses.
+$wgLuantiCentralAuthDBConnection = 'host=xxxxx user=xxxxx password=xxxxx dbname=xxxxx',
 $wgAuthManagerAutoConfig['primaryauth'][\MediaWiki\Extension\LuantiCentralAuth\LuantiCentralAuthPrimaryAuthenticationProvider::class] = [
     'class' => \MediaWiki\Extension\LuantiCentralAuth\LuantiCentralAuthPrimaryAuthenticationProvider::class,
+    'services' => [
+        'LuantiCentralAuth.LuantiCentralAuthConnection',
+    ],
     'args' => [ [
-        // Replace the 'xxxxx' with what your CentralAuth database uses.
-        'connectionParam' => 'host=xxxxx user=xxxxx password=xxxxx dbname=xxxxx',
         'authoritative' => true,
-    ]],
+    ] ],
     'sort' => 50,
 ];
 ```

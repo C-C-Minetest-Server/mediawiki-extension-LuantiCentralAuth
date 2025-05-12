@@ -23,7 +23,7 @@
 				"class": "MediaWiki\\Extension\\LuantiCentralAuth\\LuantiCentralAuthPrimaryAuthenticationProvider",
 				"sort": 50,
 				"services": [
-					"LuantiCentralAuthPrimaryAuthenticationProvider"
+					"LuantiCentralAuth.LuantiCentralAuthConnection"
 				]
 			}
 		}

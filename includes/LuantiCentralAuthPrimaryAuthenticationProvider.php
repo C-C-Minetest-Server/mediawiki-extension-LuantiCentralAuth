@@ -27,6 +27,7 @@ use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\User\UserRigorOptions;
+use MediaWiki\User\User;
 
 class LuantiCentralAuthPrimaryAuthenticationProvider extends AbstractPasswordPrimaryAuthenticationProvider
 {

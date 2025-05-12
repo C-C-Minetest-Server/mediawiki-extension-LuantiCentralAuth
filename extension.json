@@ -15,6 +15,14 @@
 		"LuantiCentralAuthDBConnection": {
 			"description": "PostgreSQL connection paramater passed into pg_connect",
 			"value": null
+		},
+		"LuantiCentralAuthServerID": {
+			"description": "The server ID of the linked server in the CentralAuth system",
+			"value": null
+		},
+		"LuantiCentralAuthPrivilegesMap": {
+			"description": "A map of privileges to be used for the CentralAuth system",
+			"value": []
 		}
 	},
 	"AuthManagerAutoConfig": {
@@ -31,5 +39,17 @@
 	"ServiceWiringFiles": [
 		"includes/ServiceWiring.php"
 	],
+	"Hooks": {
+		"UserEffectiveGroups": "main"
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "MediaWiki\\Extension\\LuantiCentralAuth\\LuantiCentralAuthHooks",
+			"services": [
+				"LuantiCentralAuth.LuantiCentralAuthConnection",
+				"MainConfig"
+			]
+		}
+	},
 	"manifest_version": 2
 }

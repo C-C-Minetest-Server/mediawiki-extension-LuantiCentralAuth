@@ -58,4 +58,48 @@ class LuantiCentralAuthConnection
             $row['gu_password']
         );
     }
+
+    public function getGlobalUserPrivs(int|LuantiCentralAuthGlobalUser $user): array
+    {
+        if ($user instanceof LuantiCentralAuthGlobalUser) {
+            return $this->getGlobalUserPrivs($user->getId());
+        }
+
+        $query = \pg_query_params(
+            $this->postgresConnection,
+            'SELECT gp_id, gp_privilege FROM global_user_privs WHERE gp_id = $1',
+            [$user]
+        );
+
+        if ($query === false) {
+            throw new \Exception('Query failed: ' . \pg_last_error($this->postgresConnection));
+        }
+        $privs = [];
+        while ($row = \pg_fetch_assoc($query)) {
+            $privs[] = $row['gp_privilege'];
+        }
+        return $privs;
+    }
+
+    public function getLocalUserPrivs(string $serverID, int|LuantiCentralAuthGlobalUser $user): array
+    {
+        if ($user instanceof LuantiCentralAuthGlobalUser) {
+            return $this->getLocalUserPrivs($serverID, $user->getId());
+        }
+
+        $query = \pg_query_params(
+            $this->postgresConnection,
+            "SELECT lp_id, lp_privilege FROM {$serverID}_local_user_privilege WHERE lp_id = $1",
+            [$user]
+        );
+
+        if ($query === false) {
+            throw new \Exception('Query failed: ' . \pg_last_error($this->postgresConnection));
+        }
+        $privs = [];
+        while ($row = \pg_fetch_assoc($query)) {
+            $privs[] = $row['lp_privilege'];
+        }
+        return $privs;
+    }
 }

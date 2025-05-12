@@ -27,9 +27,8 @@ class LuantiCentralAuthConnection
 {
     private \PgSql\Connection $postgresConnection;
 
-    public function __construct(Config $config)
+    public function __construct(string $connectionParam)
     {
-        $connectionParam = $config->get( 'LuantiCentralAuthDBConnection' );
         if ($postgresConnection = \pg_connect($connectionParam)) {
             $this->postgresConnection = $postgresConnection;
         } else {

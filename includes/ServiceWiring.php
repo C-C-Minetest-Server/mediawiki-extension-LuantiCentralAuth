@@ -25,7 +25,7 @@ use MediaWiki\MediaWikiServices;
 /** @phpcs-require-sorted-array */
 return [
     'LuantiCentralAuth.LuantiCentralAuthConnection' => function (MediaWikiServices $services): LuantiCentralAuthConnection {
-        $connectionParam = $services->getMainConfig()->get( 'LuantiCentralAuthDBConnection' );
+        $connectionParam = $services->getMainConfig()->get('LuantiCentralAuthDBConnection');
         return new LuantiCentralAuthConnection(
             $connectionParam,
         );

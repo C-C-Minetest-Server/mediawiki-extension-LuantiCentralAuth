@@ -83,13 +83,18 @@ class LuantiCentralAuthHooks
     public function onUserEffectiveGroups(User &$user, array &$aUserGroups)
     {
         $name = $user->getName();
+        $globalUser = $this->CAConnection->getGlobalUser($name);
+        if ($globalUser === null) {
+            return;
+        }
+
         $serverID = $this->config->get('LuantiCentralAuthServerID');
         if ($serverID === '')
             return;
         $privilegesMap = $this->config->get('LuantiCentralAuthPrivilegesMap');
 
-        $globalPrivileges = $this->CAConnection->getGlobalUserPrivs($name);
-        $localPrivileges = $this->CAConnection->getLocalUserPrivs($serverID, $name);
+        $globalPrivileges = $this->CAConnection->getGlobalUserPrivs($globalUser);
+        $localPrivileges = $this->CAConnection->getLocalUserPrivs($serverID, $globalUser);
 
         $privileges = array();
         foreach ($globalPrivileges as $privilege) {

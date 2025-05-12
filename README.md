@@ -10,17 +10,8 @@ Add the following into your `LocalSettings.php`:
 wfLoadExtension( 'LuantiCentralAuth' );
 
 // Replace the 'xxxxx' with what your CentralAuth database uses.
+// Note that the syntax is slightly different from Luanti Lua's pgmoon.
 $wgLuantiCentralAuthDBConnection = 'host=xxxxx user=xxxxx password=xxxxx dbname=xxxxx';
-$wgAuthManagerAutoConfig['primaryauth'][\MediaWiki\Extension\LuantiCentralAuth\LuantiCentralAuthPrimaryAuthenticationProvider::class] = [
-    'class' => \MediaWiki\Extension\LuantiCentralAuth\LuantiCentralAuthPrimaryAuthenticationProvider::class,
-    'services' => [
-        'LuantiCentralAuth.LuantiCentralAuthConnection',
-    ],
-    'args' => [ [
-        'authoritative' => true,
-    ] ],
-    'sort' => 50,
-];
 ```
 
 ## Caution

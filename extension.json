@@ -17,6 +17,17 @@
 			"value": null
 		}
 	},
+	"AuthManagerAutoConfig": {
+		"primaryauth": {
+			"LuantiCentralAuthPrimaryAuthenticationProvider": {
+				"class": "MediaWiki\\Extension\\LuantiCentralAuth\\LuantiCentralAuthPrimaryAuthenticationProvider",
+				"sort": 50,
+				"services": [
+					"LuantiCentralAuthPrimaryAuthenticationProvider"
+				]
+			}
+		}
+	},
 	"ServiceWiringFiles": [
 		"includes/ServiceWiring.php"
 	],

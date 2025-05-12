@@ -67,7 +67,7 @@ class LuantiCentralAuthConnection
 
         $query = \pg_query_params(
             $this->postgresConnection,
-            'SELECT gp_id, gp_privilege FROM global_user_privs WHERE gp_id = $1',
+            'SELECT gp_id, gp_privilege FROM global_user_privilege WHERE gp_id = $1',
             [$user]
         );
 

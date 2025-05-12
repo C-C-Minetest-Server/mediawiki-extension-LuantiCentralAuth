@@ -12,6 +12,25 @@ wfLoadExtension( 'LuantiCentralAuth' );
 // Replace the 'xxxxx' with what your CentralAuth database uses.
 // Note that the syntax is slightly different from Luanti Lua's pgmoon.
 $wgLuantiCentralAuthDBConnection = 'host=xxxxx user=xxxxx password=xxxxx dbname=xxxxx';
+
+// Set the following if you want to sync provileges from the game.
+
+// The server ID of the syncing source.
+$wgLuantiCentralAuthServerID = 'twi';
+
+// A map of MediaWiki user groups to in-game privileges.
+// A syntax similar to $wgAutopromote can be  used.
+// Global privileges can be referred by <name>@global.
+$wgLuantiCentralAuthPrivilegesMap = array(
+        'ingame-server' => 'server',
+        'ingame-ban' => 'ban',
+        'ingame-role_helper' => 'role_helper',
+);
+
+// Usually you'd want these groups to be implicit
+$wgImplicitGroups[] = 'ingame-server';
+$wgImplicitGroups[] = 'ingame-ban';
+$wgImplicitGroups[] = 'ingame-role_helper';
 ```
 
 ## Caution
